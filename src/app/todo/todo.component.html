@@ -1,0 +1,46 @@
+
+
+
+<div id="todo"  class="container alert alert-dark mt-4 text-dark">
+    <h1 class="text-center ">Todo App</h1>
+
+
+<form (submit)="addTodo()">
+
+                                                <!-- name este obligatoriul  ca si ngModel  -->
+<input type="text" placeholder="Todo ..."  name="todoValue" [(ngModel)] ="todoValue" >
+
+<button type="submit"   class="btn btn-success" >Create Todo</button>
+
+</form>
+
+<h3>Todos <span class="btn btn-success">1</span></h3>
+
+    <div class="todos" *ngFor="let todo of todos">
+        <div  class="todo alert alert-light text-dark" >
+
+   <p  *ngIf="todo.TrueorFalseToUpdate" class="h4 {{todo.completed ?'completed' :''}} "  (click)="complete(todo.id)" >{{todo.content}}</p>  <input    *ngIf="!todo.TrueorFalseToUpdate" [(ngModel)]="valueToUpdate"   type="text"  name="valueToUpdate">     
+                                                                                                                                    <!-- punem prin negatie ca sa fie o conditie si sa nu fie afisat   -->
+                        <p class="d-block text-end">{{todo.date}}</p>
+                        <div class="controls row"> 
+
+                    <div   class="col-6">
+                        <button *ngIf="todo.TrueorFalseToUpdate"  (click)="Edit(todo.id)" class="btn btn-outline-success w-100">Edit</button>
+
+                       
+                        <button *ngIf="!todo.TrueorFalseToUpdate" (click)="Update(todo.id)" class="btn btn-outline-success w-100">Update</button></div>
+
+
+                    <div class="col-6"><button (click)="delete(todo.id)" class="btn btn-outline-danger w-100">Delete</button></div>
+
+
+
+
+
+
+                </div>
+
+
+        </div>
+    </div>
+</div>
